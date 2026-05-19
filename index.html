@@ -310,6 +310,116 @@
                 font-size: 2rem;
             }
         }
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(201, 168, 76, 0.1);
+        }
+
+        .modal-content h2 {
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            color: var(--gold-hover);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .modal-content p, .modal-content li {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: left;
+            opacity: 0.9;
+        }
+
+        .modal-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: var(--text-secondary);
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--gold-hover);
+        }
+        
+        .footer-links {
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold-hover);
+        }
+
+        /* Scrollbar styling for modals */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--gold-accent);
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -361,7 +471,76 @@
         <!-- Footer Section -->
         <footer>
             <p>&copy; 2026 Ken Blaskowitz. All rights reserved.</p>
+            <div class="footer-links">
+                <a onclick="openModal('tos-modal')">Terms of Service</a> | 
+                <a onclick="openModal('pp-modal')">Privacy Policy</a>
+            </div>
         </footer>
     </div>
+    <!-- Privacy Policy Modal -->
+    <div id="pp-modal" class="modal" onclick="closeOutside(event, 'pp-modal')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('pp-modal')">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> May 19, 2026</p>
+            
+            <h3>1. Information We Collect</h3>
+            <p>We may collect personal information that you voluntarily provide to us when expressing an interest in obtaining information about us or our products, such as your name and email address. We also collect certain information automatically when you visit, use, or navigate the site (such as IP address, browser characteristics).</p>
+            
+            <h3>2. How We Use Your Information</h3>
+            <p>We process your information to provide, improve, and administer our services, communicate with you, for security and fraud prevention, and to comply with law.</p>
+            
+            <h3>3. Contact Us</h3>
+            <p>If you have questions or comments about this notice, you may contact us using the information below:</p>
+            <ul>
+                <li><strong>Company:</strong> Kanan Abdulov (Sole Proprietorship)</li>
+                <li><strong>Trade Name / DBA:</strong> Ken Blaskowitz</li>
+                <li><strong>Contact Email:</strong> main.kspace@gmail.com</li>
+                <li><strong>Registered Business Address:</strong> Khatai district, Neapol street 16, Baku, AZ1149, Azerbaijan</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="tos-modal" class="modal" onclick="closeOutside(event, 'tos-modal')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('tos-modal')">&times;</span>
+            <h2>Terms of Service</h2>
+            <p><strong>Effective Date:</strong> May 19, 2026</p>
+            
+            <h3>1. Agreement to Terms</h3>
+            <p>By accessing this website, you agree to be bound by these Terms of Service. If you do not agree with any of these terms, you are prohibited from using or accessing this site.</p>
+            
+            <h3>2. Intellectual Property Rights</h3>
+            <p>Unless otherwise indicated, the Site and all content, including but not limited to botanical illustrations, texts, and graphics, are our proprietary property and are protected by copyright and trademark laws. All rights are reserved by Kanan Abdulov operating as Ken Blaskowitz.</p>
+            
+            <h3>3. Contact Information</h3>
+            <p>In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us at:</p>
+            <ul>
+                <li><strong>Company:</strong> Kanan Abdulov (Sole Proprietorship)</li>
+                <li><strong>Trade Name / DBA:</strong> Ken Blaskowitz</li>
+                <li><strong>Contact Email:</strong> main.kspace@gmail.com</li>
+                <li><strong>Registered Business Address:</strong> Khatai district, Neapol street 16, Baku, AZ1149, Azerbaijan</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeOutside(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+    </script>
 </body>
 </html>
