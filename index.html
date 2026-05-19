@@ -3,169 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Author of Dark Botanical & Gothic Coloring Books">
+    <meta name="description" content="Ken Blaskowitz - Author of Dark Botanical & Gothic Coloring Books">
     <meta property="og:title" content="Ken Blaskowitz — Dark Botanical Coloring Books">
     <title>Ken Blaskowitz — Dark Botanical Coloring Books</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
-        /* CSS Reset and Base Styles */
+        /* CSS Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            background-color: #0a0a0a;
-            color: #E8D5B0;
-            font-family: Georgia, "Times New Roman", Times, serif;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem;
-            text-align: center;
+        :root {
+            --bg-color: #050505;
+            --gold-accent: #C9A84C;
+            --gold-hover: #E3C161;
+            --text-primary: #E8D5B0;
+            --text-secondary: #B3A486;
+            --glass-bg: rgba(15, 15, 15, 0.7);
+            --glass-border: rgba(201, 168, 76, 0.2);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Lora', serif;
         }
 
-        main {
-            max-width: 800px;
-            width: 100%;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Background Pattern with Parallax */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('assets/bg_pattern.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, transparent 0%, #050505 80%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
             display: flex;
             flex-direction: column;
-            gap: 4rem;
-            margin: auto 0;
+            gap: 5rem;
+            align-items: center;
         }
 
         /* Typography */
         h1, h2, h3 {
-            font-weight: normal;
+            font-family: var(--font-heading);
+            font-weight: 400;
         }
 
-        /* Header Section */
+        /* Header */
         header {
-            margin-bottom: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1.2s ease-out;
         }
 
         header h1 {
-            color: #C9A84C;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
+            color: var(--gold-accent);
+            font-size: clamp(3rem, 6vw, 5rem);
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
             text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
         }
 
         header p {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
             font-style: italic;
-            opacity: 0.9;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        .separator {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+            margin: 2rem auto;
         }
 
         /* About Section */
+        #about {
+            text-align: center;
+            max-width: 700px;
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+
         #about p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: #E8D5B0;
-            opacity: 0.85;
-            line-height: 1.8;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            opacity: 0.9;
+            line-height: 2;
         }
 
-        /* Latest Release Section */
+        /* Featured Release Card */
         #latest-release {
-            display: flex;
-            justify-content: center;
-        }
-
-        .book-card {
-            border: 1px solid rgba(201, 168, 76, 0.3);
-            padding: 3rem 2rem;
-            background: linear-gradient(145deg, #111111 0%, #0a0a0a 100%);
-            border-radius: 4px;
-            max-width: 500px;
             width: 100%;
-            transition: border-color 0.3s ease;
+            animation: fadeInUp 1.2s ease-out 0.8s both;
         }
 
-        .book-card:hover {
-            border-color: rgba(201, 168, 76, 0.6);
+        .glass-card {
+            display: flex;
+            flex-direction: row;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.02) inset;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
-        .book-card h2 {
-            color: #C9A84C;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(201, 168, 76, 0.1);
+            border-color: rgba(201, 168, 76, 0.4);
         }
 
-        .book-card h3 {
-            font-size: 1.1rem;
+        .card-image {
+            flex: 0 0 40%;
+            position: relative;
+            background-color: #000;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-right: 1px solid var(--glass-border);
+            transition: transform 0.7s ease;
+        }
+        
+        .glass-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 3.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+
+        .card-content h2 {
+            color: var(--gold-accent);
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
             font-style: italic;
+            font-family: var(--font-body);
+            color: var(--text-primary);
             margin-bottom: 1.5rem;
             opacity: 0.9;
         }
 
-        .book-card p {
+        .card-content p {
             margin-bottom: 2.5rem;
-            font-size: 1rem;
-            opacity: 0.8;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
-        .book-card a {
+        .btn {
             display: inline-block;
-            color: #0a0a0a;
-            background-color: #C9A84C;
+            align-self: flex-start;
+            color: #050505;
+            background-color: var(--gold-accent);
             text-decoration: none;
-            padding: 0.8rem 2rem;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            border-radius: 2px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
             text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
         }
 
-        .book-card a:hover {
-            background-color: #e6c86a;
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--gold-hover);
+            box-shadow: 0 0 15px rgba(201, 168, 76, 0.4);
             transform: translateY(-2px);
         }
 
+        .btn:hover::after {
+            left: 100%;
+        }
+
         /* Series Section */
+        #series {
+            text-align: center;
+            position: relative;
+        }
+
         #series p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-style: italic;
-            color: #C9A84C;
-            opacity: 0.9;
+            color: var(--gold-accent);
+            opacity: 0.8;
             letter-spacing: 1px;
         }
 
-        /* Footer Section */
+        /* Footer */
         footer {
             margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(232, 213, 176, 0.1);
+            text-align: center;
             font-size: 0.9rem;
-            opacity: 0.6;
+            color: var(--text-secondary);
+            opacity: 0.5;
+            letter-spacing: 1px;
+            width: 100%;
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 600px) {
-            body {
-                padding: 1.5rem;
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glass-card {
+                flex-direction: column;
             }
-            main {
-                gap: 3rem;
+            .card-image {
+                flex: 0 0 300px;
             }
-            .book-card {
-                padding: 2.5rem 1.5rem;
+            .card-image img {
+                border-right: none;
+                border-bottom: 1px solid var(--glass-border);
+            }
+            .card-content {
+                padding: 2.5rem 2rem;
+            }
+            .card-content h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Atmospheric Background Layers -->
+    <div class="bg-overlay"></div>
+    <div class="bg-gradient"></div>
 
-    <main>
+    <div class="container">
         <!-- Header Section -->
         <header>
             <h1>Ken Blaskowitz</h1>
             <p>Author of Dark Botanical & Gothic Coloring Books</p>
+            <div class="separator"></div>
         </header>
 
         <!-- About Section -->
@@ -175,24 +330,30 @@
 
         <!-- Latest Release Section -->
         <section id="latest-release">
-            <div class="book-card">
-                <h2>The Victorian Poison Garden</h2>
-                <h3>A Dark Botanical Coloring Book for Adults</h3>
-                <p>Immerse yourself in a collection of lethal flora and shadowy greenhouses inspired by 19th-century botanical studies.</p>
-                <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer">Available on Amazon</a>
+            <div class="glass-card">
+                <div class="card-image">
+                    <img src="assets/front_cover.png" alt="The Victorian Poison Garden Book Cover">
+                </div>
+                <div class="card-content">
+                    <div class="tag">Latest Release</div>
+                    <h2>The Victorian Poison Garden</h2>
+                    <h3>A Dark Botanical Coloring Book for Adults</h3>
+                    <p>Immerse yourself in a collection of lethal flora and shadowy greenhouses inspired by 19th-century botanical studies. Let the dark vines intertwine as you color through forty exquisite, poisonous illustrations.</p>
+                    <a href="https://www.amazon.com" class="btn" target="_blank" rel="noopener noreferrer">Available on Amazon</a>
+                </div>
             </div>
         </section>
 
         <!-- Series Section -->
         <section id="series">
-            <p>Upcoming work: The Botanical Series & The Dark Academia & Gothic Series</p>
+            <div class="separator" style="margin-bottom: 2rem;"></div>
+            <p>Upcoming work: The Botanical Series & The Dark Academia Series</p>
         </section>
 
         <!-- Footer Section -->
         <footer>
             <p>&copy; 2026 Ken Blaskowitz. All rights reserved.</p>
         </footer>
-    </main>
-
+    </div>
 </body>
 </html>
