@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ken Blaskowitz - Author of Dark Botanical & Gothic Coloring Books">
-    <meta property="og:title" content="Ken Blaskowitz — Dark Botanical Coloring Books">
-    <title>Ken Blaskowitz — Dark Botanical Coloring Books</title>
+    <meta name="description" content="Ken Blaskowitz - Author of Dark Botanical, Gothic & Celestial Coloring Books for Adults">
+    <meta property="og:title" content="Ken Blaskowitz — Dark Botanical & Gothic Coloring Books">
+    <title>Ken Blaskowitz — Premium Gothic Coloring Books</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        /* CSS Reset */
+        /* CSS Reset & Variables */
         * {
             margin: 0;
             padding: 0;
@@ -19,25 +21,54 @@
 
         :root {
             --bg-color: #050505;
-            --gold-accent: #C9A84C;
-            --gold-hover: #E3C161;
-            --text-primary: #E8D5B0;
-            --text-secondary: #B3A486;
-            --glass-bg: rgba(15, 15, 15, 0.7);
-            --glass-border: rgba(201, 168, 76, 0.2);
             --font-heading: 'Cinzel', serif;
             --font-body: 'Lora', serif;
+            
+            /* Poison Garden Theme (Default) */
+            --theme-bg-gradient: radial-gradient(circle at center, rgba(74, 0, 20, 0.18) 0%, #050505 85%);
+            --theme-accent: #C9A84C;
+            --theme-accent-hover: #E3C161;
+            --theme-accent-glow: rgba(201, 168, 76, 0.25);
+            --theme-glass-border: rgba(201, 168, 76, 0.15);
+            --theme-text-primary: #E8D5B0;
+            --theme-text-secondary: #B3A486;
+            --theme-glass-bg: rgba(15, 10, 10, 0.7);
+        }
+
+        /* Spirit Guides Theme variables */
+        body.theme-spirit-guides {
+            --theme-bg-gradient: radial-gradient(circle at center, rgba(16, 24, 48, 0.22) 0%, #050505 85%);
+            --theme-accent: #A2C2E8;
+            --theme-accent-hover: #C5D8F0;
+            --theme-accent-glow: rgba(162, 194, 232, 0.25);
+            --theme-glass-border: rgba(162, 194, 232, 0.15);
+            --theme-text-primary: #E1E8F0;
+            --theme-text-secondary: #9EB0C2;
+            --theme-glass-bg: rgba(10, 12, 18, 0.7);
+        }
+
+        /* Library Nooks Theme variables */
+        body.theme-library-nooks {
+            --theme-bg-gradient: radial-gradient(circle at center, rgba(54, 38, 22, 0.22) 0%, #050505 85%);
+            --theme-accent: #D4AF37;
+            --theme-accent-hover: #E5C158;
+            --theme-accent-glow: rgba(212, 175, 55, 0.25);
+            --theme-glass-border: rgba(212, 175, 55, 0.15);
+            --theme-text-primary: #EDE2CD;
+            --theme-text-secondary: #BFAEA0;
+            --theme-glass-bg: rgba(15, 12, 10, 0.7);
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
             font-family: var(--font-body);
-            line-height: 1.7;
+            line-height: 1.8;
             overflow-x: hidden;
+            transition: color 0.6s ease;
         }
 
-        /* Subtle Background Pattern with Parallax */
+        /* Atmospheric Background Elements */
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -47,7 +78,7 @@
             background-image: url('assets/bg_pattern.png');
             background-size: cover;
             background-position: center;
-            opacity: 0.05;
+            opacity: 0.03;
             z-index: -2;
             pointer-events: none;
         }
@@ -58,19 +89,20 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: radial-gradient(circle at center, transparent 0%, #050505 80%);
+            background: var(--theme-bg-gradient);
             z-index: -1;
             pointer-events: none;
+            transition: background 0.8s ease;
         }
 
-        /* Layout */
+        /* Layout Container */
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             display: flex;
             flex-direction: column;
-            gap: 5rem;
+            gap: 4.5rem;
             align-items: center;
         }
 
@@ -78,98 +110,187 @@
         h1, h2, h3 {
             font-family: var(--font-heading);
             font-weight: 400;
+            letter-spacing: 2px;
         }
 
-        /* Header */
+        /* Header Area */
         header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             animation: fadeInDown 1.2s ease-out;
         }
 
         header h1 {
-            color: var(--gold-accent);
-            font-size: clamp(3rem, 6vw, 5rem);
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
+            color: var(--theme-accent);
+            font-size: clamp(3rem, 7vw, 4.8rem);
+            letter-spacing: 6px;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
+            text-shadow: 0 0 25px var(--theme-accent-glow);
+            transition: color 0.6s ease, text-shadow 0.6s ease;
+            font-weight: 700;
         }
 
         header p {
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             font-style: italic;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
+            color: var(--theme-text-secondary);
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+            transition: color 0.6s ease;
         }
 
-        .separator {
-            width: 100px;
+        /* Decorative Ornaments & Separators */
+        .ornament-separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 1.5rem 0;
+        }
+
+        .ornament-separator img {
+            width: 90px;
+            height: auto;
+            opacity: 0.45;
+            filter: sepia(0.3) brightness(0.9);
+            transition: opacity 0.5s ease, filter 0.5s ease;
+        }
+
+        .separator-line {
+            width: 80px;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+            background: linear-gradient(90deg, transparent, var(--theme-accent), transparent);
             margin: 2rem auto;
+            transition: background 0.6s ease;
         }
 
-        /* About Section */
+        /* Author About Blurb */
         #about {
             text-align: center;
-            max-width: 700px;
-            animation: fadeIn 1.5s ease-out 0.5s both;
+            max-width: 750px;
+            animation: fadeIn 1.5s ease-out 0.3s both;
         }
 
         #about p {
             font-size: 1.15rem;
-            color: var(--text-primary);
-            opacity: 0.9;
-            line-height: 2;
+            color: var(--theme-text-primary);
+            opacity: 0.95;
+            line-height: 2.1;
+            transition: color 0.6s ease;
         }
 
-        /* Featured Release Card */
-        #latest-release {
-            width: 100%;
-            animation: fadeInUp 1.2s ease-out 0.8s both;
-        }
-
-        .glass-card {
+        /* Gothic Book Switcher Tabs */
+        .book-tabs {
             display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
+            margin-top: 1rem;
+            animation: fadeInUp 1.2s ease-out 0.5s both;
+        }
+
+        .tab-btn {
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid var(--theme-glass-border);
+            color: var(--theme-text-secondary);
+            font-family: var(--font-heading);
+            padding: 0.8rem 1.8rem;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .tab-btn:hover {
+            color: var(--theme-accent-hover);
+            border-color: var(--theme-accent);
+            box-shadow: 0 0 15px var(--theme-accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            color: #050505;
+            background-color: var(--theme-accent);
+            border-color: var(--theme-accent);
+            font-weight: 600;
+            box-shadow: 0 5px 20px var(--theme-accent-glow);
+        }
+
+        /* Book Showcases Layout */
+        .showcase-container {
+            width: 100%;
+            position: relative;
+            min-height: 520px;
+            animation: fadeInUp 1.2s ease-out 0.7s both;
+        }
+
+        .book-card {
+            display: none;
             flex-direction: row;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
+            background: var(--theme-glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--theme-glass-border);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.02) inset;
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255,255,255,0.01) inset;
+            transition: border-color 0.6s ease, background 0.6s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            width: 100%;
         }
 
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(201, 168, 76, 0.1);
-            border-color: rgba(201, 168, 76, 0.4);
+        .book-card.active {
+            display: flex;
+            animation: cardReveal 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
 
-        .card-image {
-            flex: 0 0 40%;
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 35px 75px rgba(0, 0, 0, 0.85), 0 0 25px var(--theme-accent-glow);
+            border-color: var(--theme-accent);
+        }
+
+        .card-cover {
+            flex: 0 0 42%;
             position: relative;
-            background-color: #000;
+            background-color: #030303;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--theme-glass-border);
+            transition: border-right-color 0.6s ease;
         }
 
-        .card-image img {
+        .card-cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
             display: block;
-            border-right: 1px solid var(--glass-border);
-            transition: transform 0.7s ease;
-        }
-        
-        .glass-card:hover .card-image img {
-            transform: scale(1.05);
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .card-content {
+        .book-card:hover .card-cover img {
+            transform: scale(1.04) rotate(0.5deg);
+        }
+
+        /* Inset book shadow simulation */
+        .card-cover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 15px 0 30px rgba(0,0,0,0.7), inset -10px 0 20px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+
+        .card-info {
             padding: 3.5rem 3rem;
             display: flex;
             flex-direction: column;
@@ -177,140 +298,364 @@
             flex: 1;
         }
 
-        .tag {
+        .card-tag {
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-family: var(--font-heading);
-        }
-
-        .card-content h2 {
-            color: var(--gold-accent);
-            font-size: 2.5rem;
-            line-height: 1.1;
+            color: var(--theme-text-secondary);
             margin-bottom: 0.8rem;
+            font-family: var(--font-heading);
+            transition: color 0.6s ease;
         }
 
-        .card-content h3 {
-            font-size: 1.2rem;
+        .card-info h2 {
+            color: var(--theme-accent);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            line-height: 1.15;
+            margin-bottom: 0.8rem;
+            transition: color 0.6s ease;
+        }
+
+        .card-info h3 {
+            font-size: 1.15rem;
             font-style: italic;
             font-family: var(--font-body);
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
             margin-bottom: 1.5rem;
             opacity: 0.9;
+            transition: color 0.6s ease;
         }
 
-        .card-content p {
-            margin-bottom: 2.5rem;
+        .card-info p {
+            margin-bottom: 2rem;
             font-size: 1.05rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
+            color: var(--theme-text-secondary);
+            line-height: 1.85;
+            transition: color 0.6s ease;
         }
 
-        .btn {
+        .card-info p b {
+            color: var(--theme-text-primary);
+        }
+
+        /* Premium Gothic Amazon CTA Button */
+        .amazon-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 12px;
             align-self: flex-start;
             color: #050505;
-            background-color: var(--gold-accent);
+            background: linear-gradient(135deg, var(--theme-accent) 0%, var(--theme-accent-hover) 100%);
             text-decoration: none;
-            padding: 1rem 2.5rem;
+            padding: 1.1rem 2.5rem;
             font-family: var(--font-heading);
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             letter-spacing: 2px;
-            border-radius: 3px;
-            transition: all 0.3s ease;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             text-transform: uppercase;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255,255,255,0.1) inset;
         }
 
-        .btn::after {
+        .amazon-btn::after {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.6s ease;
         }
 
-        .btn:hover {
-            background-color: var(--gold-hover);
-            box-shadow: 0 0 15px rgba(201, 168, 76, 0.4);
+        .amazon-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--theme-accent-glow);
+            filter: brightness(1.08);
         }
 
-        .btn:hover::after {
+        .amazon-btn:hover::after {
             left: 100%;
         }
 
-        /* Series Section */
-        #series {
+        .amazon-btn svg {
+            transition: transform 0.4s ease;
+        }
+
+        .amazon-btn:hover svg {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        /* Interactive Before/After Comparison Slider */
+        #interactive-slider-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
             text-align: center;
+        }
+
+        .section-title {
+            color: var(--theme-accent);
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            transition: color 0.6s ease;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--theme-text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            transition: color 0.6s ease;
+        }
+
+        .slider-wrapper {
+            width: 100%;
+            max-width: 520px;
+            aspect-ratio: 1 / 1;
+            border: 1px solid var(--theme-glass-border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 25px 65px rgba(0,0,0,0.8);
             position: relative;
+            background-color: #080808;
+            transition: border-color 0.6s ease;
         }
 
-        #series p {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--gold-accent);
-            opacity: 0.8;
-            letter-spacing: 1px;
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            cursor: ew-resize;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
-        /* Footer */
+        .slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+
+        .foreground-img-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .foreground-img-container img {
+            max-width: none;
+            /* Width gets dynamically updated via Resize Observer / JS to match slider container width */
+        }
+
+        /* Slider Control Handle */
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: var(--theme-accent);
+            cursor: ew-resize;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transform: translateX(-50%);
+            transition: background-color 0.6s ease;
+            pointer-events: none; /* Mouse coordinates are captured by the container */
+        }
+
+        .handle-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #0d0d0d;
+            border: 2px solid var(--theme-accent);
+            box-shadow: 0 0 15px rgba(0,0,0,0.7), 0 0 10px var(--theme-accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--theme-accent);
+            transition: border-color 0.6s ease, color 0.6s ease;
+        }
+
+        .handle-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .handle-line {
+            width: 2px;
+            flex-grow: 1;
+            background: var(--theme-accent);
+            opacity: 0.7;
+            transition: background-color 0.6s ease;
+        }
+
+        /* Inside the Pages Glimpse Showcase */
+        #gallery-section {
+            width: 100%;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background: var(--theme-glass-bg);
+            border: 1px solid var(--theme-glass-border);
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: zoom-in;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transition: border-color 0.6s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--theme-accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 15px var(--theme-accent-glow);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Hover Overlay indicator */
+        .gallery-item::after {
+            content: '🔍';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Full Screen Image Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.93);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .lightbox-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--theme-accent);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8), 0 0 30px var(--theme-accent-glow);
+            background: #000;
+            transform: scale(0.9);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        }
+
+        .lightbox-modal.show .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            display: block;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: #fff;
+            font-size: 2.8rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+            z-index: 2001;
+        }
+
+        .lightbox-close:hover {
+            color: var(--theme-accent);
+            transform: scale(1.1);
+        }
+
+        /* Footer Section */
         footer {
-            margin-top: 2rem;
+            margin-top: 3rem;
             text-align: center;
             font-size: 0.9rem;
-            color: var(--text-secondary);
-            opacity: 0.5;
+            color: var(--theme-text-secondary);
+            opacity: 0.65;
             letter-spacing: 1px;
             width: 100%;
+            transition: color 0.6s ease;
         }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .glass-card {
-                flex-direction: column;
-            }
-            .card-image {
-                flex: 0 0 300px;
-            }
-            .card-image img {
-                border-right: none;
-                border-bottom: 1px solid var(--glass-border);
-            }
-            .card-content {
-                padding: 2.5rem 2rem;
-            }
-            .card-content h2 {
-                font-size: 2rem;
-            }
-        }
-        /* Modals */
+        /* Standard Modals (ToS / PP) */
         .modal {
             display: none;
             position: fixed;
@@ -319,8 +664,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
             align-items: center;
             justify-content: center;
             opacity: 0;
@@ -333,39 +678,43 @@
         }
 
         .modal-content {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            background: var(--theme-glass-bg);
+            border: 1px solid var(--theme-glass-border);
             border-radius: 8px;
             padding: 3rem;
             max-width: 800px;
             width: 90%;
-            max-height: 85vh;
+            max-height: 80vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(201, 168, 76, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85), 0 0 25px var(--theme-accent-glow);
+            transition: border-color 0.6s ease;
         }
 
         .modal-content h2 {
-            color: var(--gold-accent);
+            color: var(--theme-accent);
             margin-bottom: 1.5rem;
             font-size: 2rem;
             text-align: center;
+            transition: color 0.6s ease;
         }
 
         .modal-content h3 {
-            color: var(--gold-hover);
+            color: var(--theme-accent-hover);
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            transition: color 0.6s ease;
         }
 
         .modal-content p, .modal-content li {
-            color: var(--text-primary);
+            color: var(--theme-text-primary);
             margin-bottom: 1rem;
             font-size: 1rem;
-            line-height: 1.6;
+            line-height: 1.65;
             text-align: left;
             opacity: 0.9;
+            transition: color 0.6s ease;
         }
 
         .modal-content ul {
@@ -378,15 +727,15 @@
             position: absolute;
             top: 1.5rem;
             right: 2rem;
-            color: var(--text-secondary);
-            font-size: 2rem;
+            color: var(--theme-text-secondary);
+            font-size: 2.2rem;
             font-weight: bold;
             cursor: pointer;
             transition: color 0.3s ease;
         }
 
         .close-btn:hover {
-            color: var(--gold-hover);
+            color: var(--theme-accent);
         }
         
         .footer-links {
@@ -394,9 +743,9 @@
         }
         
         .footer-links a {
-            color: var(--text-secondary);
+            color: var(--theme-text-secondary);
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 12px;
             transition: color 0.3s ease;
             cursor: pointer;
             text-transform: uppercase;
@@ -405,54 +754,137 @@
         }
         
         .footer-links a:hover {
-            color: var(--gold-hover);
+            color: var(--theme-accent);
         }
 
-        /* Scrollbar styling for modals */
-        .modal-content::-webkit-scrollbar {
+        /* Scrollbars */
+        .modal-content::-webkit-scrollbar,
+        body::-webkit-scrollbar {
             width: 8px;
         }
-        .modal-content::-webkit-scrollbar-track {
+        .modal-content::-webkit-scrollbar-track,
+        body::-webkit-scrollbar-track {
             background: rgba(0,0,0,0.3);
-            border-radius: 4px;
         }
-        .modal-content::-webkit-scrollbar-thumb {
-            background: var(--gold-accent);
+        .modal-content::-webkit-scrollbar-thumb,
+        body::-webkit-scrollbar-thumb {
+            background: var(--theme-accent);
             border-radius: 4px;
+            transition: background 0.6s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-35px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(35px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes cardReveal {
+            from { opacity: 0; transform: scale(0.97) translateY(15px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .book-card {
+                flex-direction: column;
+            }
+            .card-cover {
+                flex: 0 0 350px;
+                border-right: none;
+                border-bottom: 1px solid var(--theme-glass-border);
+            }
+            .card-info {
+                padding: 2.5rem 2rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .container {
+                padding: 3rem 1.2rem;
+                gap: 3.5rem;
+            }
+            .book-tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tab-btn {
+                text-align: center;
+                padding: 0.7rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .card-cover {
+                flex: 0 0 280px;
+            }
+            .card-info {
+                padding: 2rem 1.2rem;
+            }
+            .amazon-btn {
+                width: 100%;
+                padding: 1rem;
+            }
         }
     </style>
 </head>
-<body>
-    <!-- Atmospheric Background Layers -->
+<body class="theme-poison-garden">
+    <!-- Atmospheric Layers -->
     <div class="bg-overlay"></div>
     <div class="bg-gradient"></div>
 
     <div class="container">
-        <!-- Header Section -->
+        <!-- Brand Header -->
         <header>
             <h1>Ken Blaskowitz</h1>
-            <p>Author of Dark Botanical & Gothic Coloring Books</p>
-            <div class="separator"></div>
+            <p>Illustrator & Designer of Gothic Coloring Books</p>
+            <div class="ornament-separator">
+                <img id="theme-ornament" src="assets/poison_garden_ornament.png" alt="Decorative Divider Ornament">
+            </div>
         </header>
 
-        <!-- About Section -->
+        <!-- About Author -->
         <section id="about">
-            <p>Exploring the macabre and the beautiful, my work draws inspiration from the intricate elegance of Victorian botanical engravings. I design dark academia and gothic coloring books for adults, each containing 40 meticulously crafted illustrations. These volumes invite you to unravel the mysteries of a forgotten, atmospheric world.</p>
+            <p>Step into an intricate, atmospheric world where shadows dance with nature. Drawing inspiration from Victorian botanical engravings and celestial mysteries, I design coloring books that merge the beautiful with the dark, inviting adult colorists to lose themselves in slow, meditative artistry.</p>
         </section>
 
-        <!-- Latest Release Section -->
-        <section id="latest-release">
-            <div class="glass-card">
-                <div class="card-image">
+        <!-- Book Tabs Selector -->
+        <div class="book-tabs">
+            <button id="tab-poison-garden" class="tab-btn active" onclick="switchBook('poison-garden')">The Victorian Poison Garden</button>
+            <button id="tab-spirit-guides" class="tab-btn" onclick="switchBook('spirit-guides')">Spirit Guides</button>
+            <button id="tab-library-nooks" class="tab-btn" onclick="switchBook('library-nooks')">Dark Academia Library Nooks</button>
+        </div>
+
+        <!-- Book Showcases Container -->
+        <div class="showcase-container">
+            
+            <!-- Book 1: Victorian Poison Garden -->
+            <div id="book-poison-garden" class="book-card active">
+                <div class="card-cover">
                     <img src="assets/front_cover.png" alt="The Victorian Poison Garden Book Cover">
                 </div>
-                <div class="card-content">
-                    <div class="tag">Latest Release</div>
+                <div class="card-info">
+                    <div class="card-tag">Featured Volume</div>
                     <h2>The Victorian Poison Garden</h2>
                     <h3>A Dark Botanical Coloring Book for Adults</h3>
-                    <p>Immerse yourself in a collection of lethal flora and shadowy greenhouses inspired by 19th-century botanical studies. Let the dark vines intertwine as you color through forty exquisite, poisonous illustrations.</p>
-                    <a href="https://www.amazon.com" class="btn" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor">
+                    <p>Some plants are beautiful precisely because they can kill you. Immerse yourself in <b>40 intricate illustrations</b> of deadly plants like Belladonna, Hemlock, and Foxglove, drawn in the rich tradition of 19th-century apothecary botanicals. Designed for adult colorists who prefer their nature with a dark, exquisite edge.</p>
+                    <a href="#" class="amazon-btn" onclick="event.preventDefault();">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="18" height="18" fill="currentColor">
                             <path d="M257.2 162.7c-44.4 0-92.6 19.5-131.5 53.3-39.7 34.4-53.5 59.4-53.5 84.8 0 23.8 17.5 45.6 42.7 45.6 29.5 0 67.3-15.1 106.1-41 38.3-25.5 71.1-56.1 89.3-81.1 19.1-26.1 19.1-51.1 19.1-51.1-33.8-17.5-72.2-10.5-72.2-10.5z"/>
                             <path d="M117.1 262.1c0 0-42.2-34.9-57-55.9-14.7-21-22.1-44.7-22.1-71.1 0-35.3 12.8-67.9 38.3-97.7C101.9 8.1 140.2 0 178.6 0c37.5 0 71.5 13.6 102.1 41 30.5 27.4 45.8 62.6 45.8 105.7 0 38.8-15 76.5-44.9 113.1-29.9 36.6-70.8 55-122.6 55-32 0-61.9-9.1-89.7-27.3-27.8-18.2-46.7-41.2-56.7-69.1 0 0 24.3-30.8 45.3-43 20.9-12.2 46.2-18.3 75.8-18.3 32.7 0 61.5 8.1 86.4 24.3 24.9 16.2 37.3 39.5 37.3 69.9 0 25-10.6 46.2-31.9 63.5-21.3 17.3-47.5 26-78.6 26-36.4 0-69.1-10.5-98.3-31.4l-11.4 35.8c34.9 23.5 73.5 35.3 115.8 35.3 46 0 86-13.6 120.1-40.8 34.1-27.2 51.1-61.9 51.1-104 0-37.5-12.8-71.9-38.4-103.2C338.4 46.4 306.9 30.7 266 30.7c-36 0-67.3 11-93.9 33.1-26.6 22-39.9 50-39.9 84 0 24.6 7.7 46.5 23.1 65.7 15.4 19.1 41.8 48.6 41.8 48.6z"/>
                         </svg>
@@ -460,15 +892,95 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Book 2: Spirit Guides -->
+            <div id="book-spirit-guides" class="book-card">
+                <div class="card-cover">
+                    <img src="assets/spirit_guides_cover.png" alt="Spirit Guides Book Cover">
+                </div>
+                <div class="card-info">
+                    <div class="card-tag">Celestial Series</div>
+                    <h2>Spirit Guides</h2>
+                    <h3>A Celestial Tarot Animal Coloring Book</h3>
+                    <p>Every animal carries a message. Some carry the stars with them. This ethereal volume holds <b>40 celestial illustrations</b> of cosmic creatures — wolves crowned with crescent moons, owls with third eyes, and serpents coiled around planetary symbols, layered with detailed tarot patterns and star maps.</p>
+                    <a href="#" class="amazon-btn" onclick="event.preventDefault();">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="18" height="18" fill="currentColor">
+                            <path d="M257.2 162.7c-44.4 0-92.6 19.5-131.5 53.3-39.7 34.4-53.5 59.4-53.5 84.8 0 23.8 17.5 45.6 42.7 45.6 29.5 0 67.3-15.1 106.1-41 38.3-25.5 71.1-56.1 89.3-81.1 19.1-26.1 19.1-51.1 19.1-51.1-33.8-17.5-72.2-10.5-72.2-10.5z"/>
+                            <path d="M117.1 262.1c0 0-42.2-34.9-57-55.9-14.7-21-22.1-44.7-22.1-71.1 0-35.3 12.8-67.9 38.3-97.7C101.9 8.1 140.2 0 178.6 0c37.5 0 71.5 13.6 102.1 41 30.5 27.4 45.8 62.6 45.8 105.7 0 38.8-15 76.5-44.9 113.1-29.9 36.6-70.8 55-122.6 55-32 0-61.9-9.1-89.7-27.3-27.8-18.2-46.7-41.2-56.7-69.1 0 0 24.3-30.8 45.3-43 20.9-12.2 46.2-18.3 75.8-18.3 32.7 0 61.5 8.1 86.4 24.3 24.9 16.2 37.3 39.5 37.3 69.9 0 25-10.6 46.2-31.9 63.5-21.3 17.3-47.5 26-78.6 26-36.4 0-69.1-10.5-98.3-31.4l-11.4 35.8c34.9 23.5 73.5 35.3 115.8 35.3 46 0 86-13.6 120.1-40.8 34.1-27.2 51.1-61.9 51.1-104 0-37.5-12.8-71.9-38.4-103.2C338.4 46.4 306.9 30.7 266 30.7c-36 0-67.3 11-93.9 33.1-26.6 22-39.9 50-39.9 84 0 24.6 7.7 46.5 23.1 65.7 15.4 19.1 41.8 48.6 41.8 48.6z"/>
+                        </svg>
+                        Soon on Amazon
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book 3: Dark Academia Library Nooks -->
+            <div id="book-library-nooks" class="book-card">
+                <div class="card-cover">
+                    <img src="assets/dark_academia_teaser.png" alt="Dark Academia Library Nooks Book Cover">
+                </div>
+                <div class="card-info">
+                    <div class="card-tag">Gothic Interiors</div>
+                    <h2>Dark Academia Library Nooks</h2>
+                    <h3>A Gothic Reading Nooks Coloring Book</h3>
+                    <p>Some rooms feel like they hold secrets. Libraries are the worst offenders. The dark academia aesthetic comes to life across <b>40 upcoming coloring pages</b>. Inside you will find floor-to-ceiling bookshelves, sliding rolling ladders, candlelit writing tables, and dusty archive rooms designed for book lovers.</p>
+                    <a href="#" class="amazon-btn" onclick="event.preventDefault();">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="18" height="18" fill="currentColor">
+                            <path d="M257.2 162.7c-44.4 0-92.6 19.5-131.5 53.3-39.7 34.4-53.5 59.4-53.5 84.8 0 23.8 17.5 45.6 42.7 45.6 29.5 0 67.3-15.1 106.1-41 38.3-25.5 71.1-56.1 89.3-81.1 19.1-26.1 19.1-51.1 19.1-51.1-33.8-17.5-72.2-10.5-72.2-10.5z"/>
+                            <path d="M117.1 262.1c0 0-42.2-34.9-57-55.9-14.7-21-22.1-44.7-22.1-71.1 0-35.3 12.8-67.9 38.3-97.7C101.9 8.1 140.2 0 178.6 0c37.5 0 71.5 13.6 102.1 41 30.5 27.4 45.8 62.6 45.8 105.7 0 38.8-15 76.5-44.9 113.1-29.9 36.6-70.8 55-122.6 55-32 0-61.9-9.1-89.7-27.3-27.8-18.2-46.7-41.2-56.7-69.1 0 0 24.3-30.8 45.3-43 20.9-12.2 46.2-18.3 75.8-18.3 32.7 0 61.5 8.1 86.4 24.3 24.9 16.2 37.3 39.5 37.3 69.9 0 25-10.6 46.2-31.9 63.5-21.3 17.3-47.5 26-78.6 26-36.4 0-69.1-10.5-98.3-31.4l-11.4 35.8c34.9 23.5 73.5 35.3 115.8 35.3 46 0 86-13.6 120.1-40.8 34.1-27.2 51.1-61.9 51.1-104 0-37.5-12.8-71.9-38.4-103.2C338.4 46.4 306.9 30.7 266 30.7c-36 0-67.3 11-93.9 33.1-26.6 22-39.9 50-39.9 84 0 24.6 7.7 46.5 23.1 65.7 15.4 19.1 41.8 48.6 41.8 48.6z"/>
+                        </svg>
+                        Soon on Amazon
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="separator-line"></div>
+
+        <!-- Interactive Drag Comparison Slider Section -->
+        <section id="interactive-slider-section">
+            <h2 class="section-title">Bring the Art to Life</h2>
+            <p class="section-subtitle">Drag the golden divider left and right to reveal the transition from raw, intricate line art to completed, vibrant color pages.</p>
+            
+            <div class="slider-wrapper">
+                <div class="slider-container" id="before-after-slider">
+                    <img src="assets/poison_garden_bw_1.png" alt="Black and White Outline" class="slider-img" id="slider-bw-img">
+                    <div class="foreground-img-container" id="slider-fg-container">
+                        <img src="assets/poison_garden_color_1.png" alt="Colored Coloring Page" class="slider-img" id="slider-color-img">
+                    </div>
+                    <div class="slider-handle" id="slider-drag-handle">
+                        <div class="handle-line"></div>
+                        <div class="handle-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="8 17 3 12 8 7"></polyline>
+                                <polyline points="16 7 21 12 16 17"></polyline>
+                            </svg>
+                        </div>
+                        <div class="handle-line"></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Series Section -->
-        <section id="series">
-            <div class="separator" style="margin-bottom: 2rem;"></div>
-            <p>Upcoming work: The Botanical Series & The Dark Academia Series</p>
+        <!-- Inside the Pages Glimpse Section -->
+        <section id="gallery-section">
+            <h2 class="section-title">Step Inside The Pages</h2>
+            <p class="section-subtitle">Get a detailed glimpse of the meticulously crafted pages awaiting your colors in the current volume.</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img id="glimpse-img-0" src="assets/poison_garden_glimpse_1.png" alt="Coloring Page Glimpse 1">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img id="glimpse-img-1" src="assets/poison_garden_glimpse_2.png" alt="Coloring Page Glimpse 2">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img id="glimpse-img-2" src="assets/poison_garden_glimpse_3.png" alt="Coloring Page Glimpse 3">
+                </div>
+            </div>
         </section>
 
-        <!-- Footer Section -->
+        <!-- Footer Area -->
         <footer>
             <p>&copy; 2026 Ken Blaskowitz. All rights reserved.</p>
             <div class="footer-links">
@@ -477,6 +989,15 @@
             </div>
         </footer>
     </div>
+
+    <!-- Image Lightbox Modal -->
+    <div id="gallery-lightbox" class="lightbox-modal" onclick="closeLightboxOutside(event)">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Coloring Page Preview">
+        </div>
+    </div>
+
     <!-- Privacy Policy Modal -->
     <div id="pp-modal" class="modal" onclick="closeOutside(event, 'pp-modal')">
         <div class="modal-content">
@@ -525,7 +1046,213 @@
         </div>
     </div>
 
+    <!-- JavaScript Features -->
     <script>
+        // Gallery Preview Assets Mapping
+        const bookAssets = {
+            'poison-garden': {
+                themeClass: 'theme-poison-garden',
+                ornament: 'assets/poison_garden_ornament.png',
+                sliderVisible: true,
+                sliderBw: 'assets/poison_garden_bw_1.png',
+                sliderColor: 'assets/poison_garden_color_1.png',
+                glimpses: [
+                    'assets/poison_garden_glimpse_1.png',
+                    'assets/poison_garden_glimpse_2.png',
+                    'assets/poison_garden_glimpse_3.png'
+                ]
+            },
+            'spirit-guides': {
+                themeClass: 'theme-spirit-guides',
+                ornament: 'assets/spirit_guides_ornament.png',
+                sliderVisible: true,
+                sliderBw: 'assets/spirit_guides_bw_1.png',
+                sliderColor: 'assets/spirit_guides_color_1.png',
+                glimpses: [
+                    'assets/spirit_guides_glimpse_1.png',
+                    'assets/spirit_guides_glimpse_2.png',
+                    'assets/spirit_guides_glimpse_3.png'
+                ]
+            },
+            'library-nooks': {
+                themeClass: 'theme-library-nooks',
+                ornament: 'assets/poison_garden_ornament.png', // Reuse Poison Garden's elegant botanical divider
+                sliderVisible: false,
+                sliderBw: '',
+                sliderColor: '',
+                glimpses: [
+                    'assets/dark_academia_glimpse_1.png',
+                    'assets/dark_academia_glimpse_2.png',
+                    'assets/dark_academia_glimpse_3.png'
+                ]
+            }
+        };
+
+        let currentActiveBook = 'poison-garden';
+
+        // 1. Book switching logic
+        function switchBook(bookId) {
+            if (bookId === currentActiveBook) return;
+            
+            const prevBook = currentActiveBook;
+            currentActiveBook = bookId;
+            const data = bookAssets[bookId];
+
+            // Update Tab Buttons UI
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${bookId}`).classList.add('active');
+
+            // Switch Global Theme Color on Body
+            document.body.className = data.themeClass;
+
+            // Fade and Swap Book Cards
+            const cards = document.querySelectorAll('.book-card');
+            cards.forEach(card => {
+                card.classList.remove('active');
+            });
+            document.getElementById(`book-${bookId}`).classList.add('active');
+
+            // Swap Header Ornament
+            const ornamentImg = document.getElementById('theme-ornament');
+            ornamentImg.style.opacity = '0';
+            setTimeout(() => {
+                ornamentImg.src = data.ornament;
+                ornamentImg.style.opacity = '0.45';
+            }, 300);
+
+            // Handle Before/After Slider switching
+            const sliderSection = document.getElementById('interactive-slider-section');
+            if (data.sliderVisible) {
+                sliderSection.style.display = 'flex';
+                document.getElementById('slider-bw-img').src = data.sliderBw;
+                
+                const fgImg = document.getElementById('slider-color-img');
+                fgImg.src = data.sliderColor;
+                
+                // Force a reset of the slider position
+                updateSliderPosition(50);
+            } else {
+                sliderSection.style.display = 'none';
+            }
+
+            // Swap Gallery Glimpse thumbnails
+            for (let i = 0; i < 3; i++) {
+                const img = document.getElementById(`glimpse-img-${i}`);
+                img.style.opacity = '0';
+                setTimeout(() => {
+                    img.src = data.glimpses[i];
+                    img.style.opacity = '1';
+                }, 200 + (i * 100)); // Staggered fade in
+            }
+        }
+
+        // 2. Before/After Drag Handling
+        const sliderContainer = document.getElementById('before-after-slider');
+        const fgContainer = document.getElementById('slider-fg-container');
+        const fgImg = document.getElementById('slider-color-img');
+        const dragHandle = document.getElementById('slider-drag-handle');
+        let isDragging = false;
+
+        function updateSliderPosition(percent) {
+            if (percent < 0) percent = 0;
+            if (percent > 100) percent = 100;
+            fgContainer.style.width = `${percent}%`;
+            dragHandle.style.left = `${percent}%`;
+        }
+
+        // Keep foreground image width locked to slider container absolute width to prevent scaling squish
+        function matchForegroundImgWidth() {
+            const containerWidth = sliderContainer.getBoundingClientRect().width;
+            fgImg.style.width = `${containerWidth}px`;
+        }
+
+        // Attach ResizeObserver to handle layout resizes automatically
+        const resizeObserver = new ResizeObserver(entries => {
+            matchForegroundImgWidth();
+        });
+        resizeObserver.observe(sliderContainer);
+
+        // Mouse Events
+        sliderContainer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            matchForegroundImgWidth();
+            handleSliderMove(e);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            handleSliderMove(e);
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Touch Events (Mobile support)
+        sliderContainer.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            matchForegroundImgWidth();
+            handleSliderMove(e.touches[0]);
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            handleSliderMove(e.touches[0]);
+        }, { passive: false });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        function handleSliderMove(e) {
+            const rect = sliderContainer.getBoundingClientRect();
+            const posX = e.clientX - rect.left;
+            const percent = (posX / rect.width) * 100;
+            updateSliderPosition(percent);
+        }
+
+        // Initialize slider width
+        setTimeout(() => {
+            matchForegroundImgWidth();
+            updateSliderPosition(50);
+        }, 300);
+
+
+        // 3. Image Lightbox Modal logic
+        function openLightbox(index) {
+            const data = bookAssets[currentActiveBook];
+            const imgPath = data.glimpses[index];
+            const lightbox = document.getElementById('gallery-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imgPath;
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('gallery-lightbox');
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeLightboxOutside(event) {
+            if (event.target.id === 'gallery-lightbox') {
+                closeLightbox();
+            }
+        }
+
+        // Close on Escape key press
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeModal('tos-modal');
+                closeModal('pp-modal');
+            }
+        });
+
+
+        // 4. Standard Modals (ToS / PP)
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('show');
             document.body.style.overflow = 'hidden';
